@@ -1,1 +1,2 @@
-# EGB349-Group-4
+EGB349-Group-4
+Collective Code Development
