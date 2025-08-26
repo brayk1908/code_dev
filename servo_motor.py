@@ -2,14 +2,12 @@
 import rospy
 import RPi.GPIO as GPIO
 from std_msgs.msg import Bool
-from gpiozero import Servo
+from gpiozero import AngularServo
 from time import sleep
 
 
-
 sub_a = None
-servo = Servo(12)
-servo2 = Servo(13)
+servo = AngularServo(12, min_angle=-90, max_angle=90)
 
 def callback_a(msg_in):
 	# A bool message contains one field called "data" which can be true or false
@@ -17,10 +15,12 @@ def callback_a(msg_in):
 	# XXX: The following "GPIO.output" should be replaced to meet the needs of your actuators!
 	if msg_in.data:
 		rospy.loginfo("Setting output high!")
-	    servo.max()
+	    servo.angle= -90
+		sleep(1.0)
+		servo.angle=0
 	else:
 		rospy.loginfo("Setting output low!")
-		servo.min()
+		sleep(1.0)
 
 def shutdown():
 	# Clean up our ROS subscriber if they were set, avoids error messages in logs
