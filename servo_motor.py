@@ -20,6 +20,7 @@ def callback_a(msg_in):
 		servo.angle=0
 	else:
 		rospy.loginfo("Setting output low!")
+		servo.angle = -90
 		sleep(1.0)
 
 def shutdown():
